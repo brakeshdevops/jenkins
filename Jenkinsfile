@@ -27,5 +27,10 @@ pipeline {
                 echo 'Fifth stage'
             }
         }
+        stage('Six') {
+             steps {
+        mail bcc: '', body: 'Hello', cc: 'rakeshbandarupalli1@gmail.com', from: '', replyTo: '', subject: 'Hello Rakesh', to: 'bandarupallirakesh@gmail.com'             }
+        }
+
     }
 }
