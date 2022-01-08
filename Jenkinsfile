@@ -47,7 +47,7 @@ pipeline
         string(name:'PERSON',defaultValue:'Raju',description:'Hello Raju. How are you')
         text(name:'BIOGRAPHY', defaultValue: '',description:'Welcome')
         booleanParam(name:'TOGGLE',defaultValue:true,description:'Welcome')
-        choice(name:'CHOICE',choice:['one','two','three'],description:'welcome')
+        choice(name:'CHOICE',choices:['one','two','three'],description:'welcome')
         password(name:'PASSWORD',defaultValue:'Secret',description:'Enter the password')
     }
     stages
