@@ -39,28 +39,42 @@
 //         }
 //     }
 // }
+// pipeline
+// {
+//     agent any
+//     parameters
+//     {
+//         string(name:'PERSON',defaultValue:'Raju',description:'Hello Raju. How are you')
+//         text(name:'BIOGRAPHY', defaultValue: '',description:'Welcome')
+//         booleanParam(name:'TOGGLE',defaultValue:true,description:'Welcome')
+//         choice(name:'CHOICE',choices:['one','two','three'],description:'welcome')
+//         password(name:'PASSWORD',defaultValue:'Secret',description:'Enter the password')
+//     }
+//     stages
+//     {
+//         stage('Example')
+//         {
+//             steps
+//             {
+//                 echo "Hello ${params.PERSON}"
+//                 echo "Biography: ${params.BIOGRAPHY}"
+//                 echo "toggle: ${params.TOGGLE}"
+//                 echo "choice: ${params.CHOICE}"
+//                 echo "Password: ${params.PASSWORD}"
+//             }
+//         }
+//     }
+// }
 pipeline
 {
-    agent any
-    parameters
-    {
-        string(name:'PERSON',defaultValue:'Raju',description:'Hello Raju. How are you')
-        text(name:'BIOGRAPHY', defaultValue: '',description:'Welcome')
-        booleanParam(name:'TOGGLE',defaultValue:true,description:'Welcome')
-        choice(name:'CHOICE',choices:['one','two','three'],description:'welcome')
-        password(name:'PASSWORD',defaultValue:'Secret',description:'Enter the password')
-    }
+agent any
     stages
     {
-        stage('Example')
+        stage('one')
         {
             steps
             {
-                echo "Hello ${params.PERSON}"
-                echo "Biography: ${params.BIOGRAPHY}"
-                echo "toggle: ${params.TOGGLE}"
-                echo "choice: ${params.CHOICE}"
-                echo "Password: ${params.PASSWORD}"
+            sh 'mvn --version'
             }
         }
     }
