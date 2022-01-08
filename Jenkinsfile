@@ -1,11 +1,18 @@
-node
+pipeline
 {
-    stage('one')
+    agent any
+    options
     {
-        sh 'echo Welcome to jenkins'
+        disableConcurrentBuilds()
     }
-    stage('two')
+    stages
     {
-        sh 'echo Welcome back once again'
+        stage('one')
+        {
+            steps
+            {
+                sh 'Welcome to shell scripting in jenkins'
+            }
+        }
     }
 }
