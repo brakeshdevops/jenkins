@@ -56,11 +56,11 @@ pipeline
         {
             steps
             {
-                echo "Hello $(params.PERSON)"
-                echo "Biography: $(params.BIOGRAPHY)"
-                echo "toggle: $(params.TOGGLE)"
-                echo "choice: $(params.CHOICE)"
-                echo "Password: $(params.PASSWORD)"
+                echo "Hello ${params.PERSON}"
+                echo "Biography: ${params.BIOGRAPHY}"
+                echo "toggle: ${params.TOGGLE}"
+                echo "choice: ${params.CHOICE}"
+                echo "Password: ${params.PASSWORD}"
             }
         }
     }
