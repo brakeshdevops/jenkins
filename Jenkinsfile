@@ -33,6 +33,7 @@ pipeline
             {
                 sh 'echo ${A}'
                 echo A
+                sh 'env'
                 echo cred
             }
         }
