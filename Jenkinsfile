@@ -17,24 +17,50 @@
 //         }
 //     }
 // }
+// pipeline
+// {
+//     agent any
+//     environment
+//     {
+//         A= "Jenkins program"
+//         cred=credentials('centos')
+//     }
+//     stages
+//     {
+//         stage('one')
+//         {
+//             steps
+//             {
+//                 sh 'echo ${A}'
+//                 echo A
+//                 sh 'env'
+//                 echo cred
+//             }
+//         }
+//     }
+// }
 pipeline
 {
     agent any
-    environment
+    parameters
     {
-        A= "Jenkins program"
-        cred=credentials('centos')
+        string(name:'PERSON',defaultValue:'Raju',description:'Hello Raju. How are you')
+        text(name:'BIOGRAPHY', defaultValue: '',description:'Welcome')
+        booleanParam(name:'TOGGLE',defaultValue:true,description:'Welcome')
+        choice(name:'CHOICE',choice:['one','two','three'],description:'welcome')
+        password(name:'PASSWORD',defaultValue:'Secret',description:'Enter the password')
     }
     stages
     {
-        stage('one')
+        stage('Example')
         {
             steps
             {
-                sh 'echo ${A}'
-                echo A
-                sh 'env'
-                echo cred
+                echo "Hello $(params.PERSON)"
+                echo "Biography: $(params.BIOGRAPHY)"
+                echo "toggle: $(params.TOGGLE)"
+                echo "choice: $(params.CHOICE)"
+                echo "Password: $(params.PASSWORD)"
             }
         }
     }
