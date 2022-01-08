@@ -1,9 +1,28 @@
+// adding options
+// pipeline
+// {
+//     agent any
+//     options
+//     {
+//         disableConcurrentBuilds()
+//     }
+//     stages
+//     {
+//         stage('one')
+//         {
+//             steps
+//             {
+//                 echo 'sh Welcome to shell scripting in jenkins'
+//             }
+//         }
+//     }
+// }
 pipeline
 {
     agent any
-    options
+    environment
     {
-        disableConcurrentBuilds()
+        A= "Jenkins program"
     }
     stages
     {
@@ -11,7 +30,8 @@ pipeline
         {
             steps
             {
-                echo 'sh Welcome to shell scripting in jenkins'
+                sh 'echo ${A}'
+                echo A
             }
         }
     }
