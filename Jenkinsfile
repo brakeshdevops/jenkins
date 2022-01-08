@@ -11,7 +11,7 @@ pipeline
         {
             steps
             {
-                sh 'Welcome to shell scripting in jenkins'
+                echo 'sh Welcome to shell scripting in jenkins'
             }
         }
     }
