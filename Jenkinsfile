@@ -23,6 +23,7 @@ pipeline
     environment
     {
         A= "Jenkins program"
+        cred=credentials('centos')
     }
     stages
     {
@@ -32,6 +33,7 @@ pipeline
             {
                 sh 'echo ${A}'
                 echo A
+                echo cred
             }
         }
     }
