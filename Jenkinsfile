@@ -101,36 +101,72 @@
 //         }
 //     }
 /// }
+// pipeline
+// {
+// agent any
+// parameters
+//     {
+//     choice(name:'ENV',choices:['DEV','PROD'],description:'choose any one')
+//     }
+// stages
+// {
+//     stage('DEV')
+//     {
+//         when
+//         {
+//             environment name:'ENV', value:'DEV'
+//         }
+//         steps
+//         {
+//             echo 'DEV'
+//         }
+//     }
+//     stage('PROD')
+//     {
+//         when
+//         {
+//             environment name:'ENV', value:'PROD'
+//         }
+//         steps
+//         {
+//             echo 'PROD'
+//         }
+//     }
+// }
+// }
 pipeline
 {
 agent any
-parameters
+    stages
     {
-    choice(name:'ENV',choices:['DEV','PROD'],description:'choose any one')
+        stage('One-sequential')
+        {
+            steps
+            {
+                sh 'sleep 45'
+            }
+        }
+        stage('Two-parallel')
+        {
+            parallel
+            {
+                stage('two-one')
+                {
+                    steps
+                       {
+                           sh 'sleep 60'
+                       }
+                }
+                 stage('two-two')
+                 {
+                    steps
+                    {
+                        sh 'sleep 90'
+                    }
+                 }
+
+            }
+        }
+
     }
-stages
-{
-    stage('DEV')
-    {
-        when
-        {
-            environment name:'ENV', value:'DEV'
-        }
-        steps
-        {
-            echo 'DEV'
-        }
-    }
-    stage('PROD')
-    {
-        when
-        {
-            environment name:'ENV', value:'PROD'
-        }
-        steps
-        {
-            echo 'PROD'
-        }
-    }
-}
 }
