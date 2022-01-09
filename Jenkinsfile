@@ -83,21 +83,54 @@
 //         }
 //     }
 // }
-pipeline {
-    agent any
-    stages {
-        stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "rakesh"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
-            steps {
-                echo "Hello, ${PERSON}, nice to meet you."
-            }
+// pipeline {
+//     agent any
+//     stages {
+//         stage('Example') {
+//             input {
+//                 message "Should we continue?"
+//                 ok "Yes, we should."
+//                 submitter "rakesh"
+//                 parameters {
+//                     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+//                 }
+//             }
+//             steps {
+//                 echo "Hello, ${PERSON}, nice to meet you."
+//             }
+//         }
+//     }
+// }
+pipeline
+{
+agent any
+parameters
+    {
+    choice(name:'ENV',choice:['DEV','PROD'],description:'choose any one')
+    }
+stages
+{
+    stage('DEV')
+    {
+        when
+        {
+            environment name:'ENV', value:'DEV'
+        }
+        steps
+        {
+            echo 'DEV'
         }
     }
+    stage('PROD')
+    {
+        when
+        {
+            environment name:'ENV', value:'PROD'
+        }
+        steps
+        {
+            echo 'PROD'
+        }
+    }
+}
 }
