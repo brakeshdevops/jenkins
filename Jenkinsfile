@@ -106,7 +106,7 @@ pipeline
 agent any
 parameters
     {
-    choice(name:'ENV',choice:['DEV','PROD'],description:'choose any one')
+    choice(name:'ENV',choices:['DEV','PROD'],description:'choose any one')
     }
 stages
 {
