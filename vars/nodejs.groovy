@@ -4,7 +4,7 @@ def call()
             {
                 agent
                         {
-                            label 'WORKSTATION'
+                            label '${BUILD_LABEL}'
                         }
                 triggers
                         {
