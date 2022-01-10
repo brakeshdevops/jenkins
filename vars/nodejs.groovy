@@ -4,7 +4,7 @@ def call()
             {
                 agent
                         {
-                            label 'WORKSTATION'
+                            label '${BUILD_LABEL}'
                         }
                 triggers
                         {
@@ -16,14 +16,14 @@ def call()
                                     {
                                         steps
                                                 {
-                                                   sh 'echo compile the code'
+                                                   sh 'echo compile the ${COMPONENT} code'
                                                 }
                                     }
                             stage('Check the code quality')
                                     {
                                         steps
                                                 {
-                                                    sh 'echo check the code quality'
+                                                    sh 'echo check the ${COMPONENT} code quality'
                                                 }
                                     }
                             stage('Test Cases')
