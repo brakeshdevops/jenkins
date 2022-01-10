@@ -39,7 +39,7 @@ def call()
                 {
                   always
                   {
-                    cleanws()
+                    cleanWs()
                   }
                 }
             }
