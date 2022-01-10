@@ -13,19 +13,22 @@ def call()
                 stages
                         {
                             stage('Compile the code')
-                                    {
-                                        steps
-                                                {
-                                                    sh 'echo compile the ${COMPONENT} code'
-                                                }
-                                    }
-                            stage('Check the code quality')
-                                    {
-                                        steps
-                                                {
-                                                    sh 'echo check the ${COMPONENT} code quality'
-                                                }
-                                    }
+                            {
+                               steps
+                               {
+                                 sh 'mvn compile'
+                               }
+                            }
+            stage('Check the code quality')
+            {
+                steps
+                {
+                script
+                {
+                common.sonarQube()
+                }
+                }
+            }
                             stage('Lint Checks')
                                     {
                                         steps
