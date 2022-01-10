@@ -18,6 +18,7 @@ pipelineJob('roboshop-ansible') {
         }
     }
 }
+//seed file added
 folder('CI-Pipelines') {
     displayName('CI-Pipelines')
     description('CI-Pipelines')
