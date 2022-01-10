@@ -23,7 +23,7 @@ folder('CI-Pipelines') {
     displayName('CI-Pipelines')
     description('CI-Pipelines')
 }
-def COMPONENTS:ArrayList = ["cart", "catalogue", "payment", "shipping", "user", "dispatch"]
+def COMPONENTS;ArrayList = ["cart", "catalogue", "payment", "shipping", "user", "dispatch"]
 def size=COMPONENTS.size-1
 for(i in 0..size)
 {
