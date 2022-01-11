@@ -41,7 +41,10 @@ def call()
             {
             steps
             {
-                sh 'echo publish artifacts'
+                script
+                {
+                    common.skipStage()
+                }
                 sh 'env'
             }
             }
