@@ -30,14 +30,22 @@ def call()
                 sh 'echo lint checks'
               }
             }
-                            stage('Test Cases')
-                                    {
-                                        steps
-                                                {
-                                                    sh 'echo test cases'
-                                                }
-                                    }
-                        }
+            stage('Test Cases')
+            {
+               steps
+               {
+                   sh 'echo test cases'
+                }
+            }
+            stage('Test Cases')
+            {
+            steps
+            {
+                sh 'echo publish artifacts'
+            }
+            }
+
+            }
                 post
                 {
                     always
