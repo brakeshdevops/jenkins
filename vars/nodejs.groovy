@@ -37,7 +37,7 @@ def call()
                    sh 'echo test cases'
                 }
             }
-            stage('Test Cases')
+            stage('publish artifacts')
             {
             steps
             {
