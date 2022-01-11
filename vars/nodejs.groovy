@@ -23,13 +23,13 @@ def call()
                     }
                }
             }
-                            stage('Lint Checks')
-                                    {
-                                        steps
-                                                {
-                                                    sh 'echo Lint Checks'
-                                                }
-                                    }
+            stage('Lint Checks')
+            {
+              steps
+              {
+                sh '/home/centos/node_modules/eslint/bin/node/eslint.js .'
+              }
+            }
                             stage('Test Cases')
                                     {
                                         steps
