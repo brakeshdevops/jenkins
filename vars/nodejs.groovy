@@ -35,6 +35,7 @@ def call()
                steps
                {
                    sh 'echo test cases'
+                   sh 'env'
                 }
             }
             stage('publish artifacts')
@@ -45,7 +46,7 @@ def call()
                 {
                     common.skipStage()
                 }
-                sh 'env'
+
             }
             }
 
