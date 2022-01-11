@@ -25,7 +25,7 @@ def call()
                 {
                 script
                 {
-                common.sonarQube("shipping","java")
+                common.sonarQube()
                 }
                 }
             }
