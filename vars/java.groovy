@@ -17,65 +17,66 @@ def call()
 //                   pollSCM('H/2 * * * *')
 //                }
                 stages
-                {
-                stage('Label Builds')
-                {
-                  steps
-                  {
-                   script
-                   {
-                       env.gitTag=GIT_BRANCH.split('/').last()
-                       addShortText background: 'white', borderColor: 'white', color: 'red', link: '', text: "${gitTag}"
-                   }
-                   }
-                }
+                        {
+                            stage('Label Builds')
+                                    {
+                                        steps
+                                                {
+                                                    script
+                                                            {
+                                                                env.gitTag = GIT_BRANCH.split('/').last()
+                                                                addShortText background: 'white', borderColor: 'white', color: 'red', link: '', text: "${gitTag}"
+                                                            }
+                                                }
+                                    }
 
-                  stage('Compile the code')
-                  {
-                     steps
-                     {
-                       sh 'mvn compile'
-                     }
-                  }
-            stage('Check the code quality')
-            {
-                steps
-                {
-                script
-                {
-                common.sonarQube()
-                }
-                }
-            }
-             stage('Lint Checks')
-             {
-             steps
-             {
-                 sh 'echo Lint Checks'
-             }
-             }
-             stage('Test Cases')
-             {
-              steps
-               {
-                 sh 'echo test cases'
-               }
-             }
-             stage('publish artifacts')
-            {
-              when
-             {
-                expression{ sh([returnStdout: true, script: 'echo ${GIT_BRANCH} | grep tags || true'])}
-             }
-             steps
-             {
-                 script
-                 {
-                      common.prepareArtifacts()
-                      common.publishArtifacts()
-                 }
-             }
-            }
+                            stage('Compile the code')
+                                    {
+                                        steps
+                                                {
+                                                    sh 'mvn compile'
+                                                }
+                                    }
+                            stage('Check the code quality')
+                                    {
+                                        steps
+                                                {
+                                                    script
+                                                            {
+                                                                common.sonarQube()
+                                                            }
+                                                }
+                                    }
+                            stage('Lint Checks')
+                                    {
+                                        steps
+                                                {
+                                                    sh 'echo Lint Checks'
+                                                }
+                                    }
+                            stage('Test Cases')
+                                    {
+                                        steps
+                                                {
+                                                    sh 'echo test cases'
+                                                }
+                                    }
+                            stage('publish artifacts')
+                                    {
+                                        when
+                                                {
+                                                    expression { sh([returnStdout: true, script: 'echo ${GIT_BRANCH} | grep tags || true']) }
+                                                }
+                                        steps
+                                                {
+                                                    script
+                                                            {
+                                                                common.prepareArtifacts()
+                                                                common.publishArtifacts()
+                                                            }
+                                                }
+                                    }
+                        }
                 post
                 {
                    always
@@ -84,5 +85,4 @@ def call()
                    }
                 }
             }
-}
     }
