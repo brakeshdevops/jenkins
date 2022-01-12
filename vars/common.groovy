@@ -5,15 +5,19 @@ def sonarQube()
 //    sh 'sonar-quality-gate.sh admin admin123 172.31.12.21 ${COMPONENT}'
     sh 'echo sonarqube quality check'
 }
-def skipStage()
+def publishArtifacts()
 {
-    if(env.GIT_BRANCH == "*tags*")
-    {
-        println "Ran on Tag"
-    }
-    else
-    {
-        Utils.markStageSkippedForConditional('publish artifacts')
-    }
+//    if(env.GIT_BRANCH == "*tags*")
+//    {
+//        println "Ran on Tag"
+//    }
+//    else
+//    {
+//        Utils.markStageSkippedForConditional('publish artifacts')
+//    }
 
+}
+def prepareArtifacts()
+{
+    println PROG_LANG
 }

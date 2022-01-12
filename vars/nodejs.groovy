@@ -6,10 +6,14 @@ def call()
                         {
                             label "${BUILD_LABEL}"
                         }
-                triggers
-                        {
-                            pollSCM('H/2 * * * *')
-                        }
+                environment
+                {
+                    PROG_LANG = "nodejs"
+                }
+//            triggers
+//            {
+//              pollSCM('H/2 * * * *')
+//             }
             stages
             {
             stage('Label Builds')
@@ -61,8 +65,9 @@ def call()
             {
                 script
                 {
-                //    common.skipStage()
-                    println 'Publish Artifacts'
+                    common.prepareArtifacts()
+                    common.publishArtifacts()
+
                 }
 
             }
