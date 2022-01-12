@@ -14,8 +14,16 @@ def call()
             {
             stage('Label Builds')
             {
-                def gitTag=GIT_BRANCH.split('/').last()
-                addShortText background: 'white', borderColor: 'white', color: 'red', link: '', text: "${gitTag}"
+                steps
+                {
+                    script
+                    {
+                        def gitTag=GIT_BRANCH.split('/').last()
+                        addShortText background: 'white', borderColor: 'white', color: 'red', link: '', text: "${gitTag}"
+                    }
+
+                }
+
             }
 
             stage('Check the code quality')
