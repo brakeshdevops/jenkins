@@ -6,13 +6,32 @@ def call()
                         {
                             label "${BUILD_LABEL}"
                         }
-                triggers
+                environment
                         {
-                            pollSCM('*/2 * * * *')
+                            NEXUS = credentials('NEXUS')
+                            PROG_LANG_NAME = "python"
+                            PROG_LANG_VERSION = "3"
                         }
+
+//                triggers
+//                        {
+//                            pollSCM('*/2 * * * *')
+//                        }
                 stages
                         {
-                        stage('Check the code quality')
+                            stage('Label Builds')
+                                    {
+                                        steps
+                                                {
+                                                    script
+                                                            {
+                                                                env.gitTag = GIT_BRANCH.split('/').last()
+                                                                addShortText background: 'white', borderColor: 'white', color: 'red', link: '', text: "${gitTag}"
+                                                            }
+                                                }
+                                    }
+
+                            stage('Check the code quality')
                         {
                         steps
                           {
@@ -36,6 +55,22 @@ def call()
                                                     sh 'echo test cases'
                                                 }
                                     }
+                            stage('publish artifacts')
+                                    {
+                                        when
+                                                {
+                                                    expression { sh([returnStdout: true, script: 'echo ${GIT_BRANCH} | grep tags || true']) }
+                                                }
+                                        steps
+                                                {
+                                                    script
+                                                            {
+                                                                common.prepareArtifacts()
+                                                                common.publishArtifacts()
+                                                            }
+                                                }
+                                    }
+
                         }
                 post
                 {
