@@ -8,6 +8,7 @@ def call()
                         }
                 environment
                 {
+                    NEXUS = credentials('NEXUS')
                     PROG_LANG_NAME = "nodejs"
                     PROG_LANG_VERSION = "6"
                 }
