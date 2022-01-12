@@ -8,7 +8,8 @@ def call()
                         }
                 environment
                 {
-                    PROG_LANG = "nodejs"
+                    PROG_LANG_NAME = "nodejs"
+                    PROG_LANG_VERSION = "6"
                 }
 //            triggers
 //            {
@@ -22,7 +23,7 @@ def call()
                 {
                     script
                     {
-                        def gitTag=GIT_BRANCH.split('/').last()
+                        env.gitTag=GIT_BRANCH.split('/').last()
                         addShortText background: 'white', borderColor: 'white', color: 'red', link: '', text: "${gitTag}"
                     }
 
