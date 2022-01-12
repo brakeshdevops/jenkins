@@ -10,8 +10,13 @@ def call()
                         {
                             pollSCM('H/2 * * * *')
                         }
-                stages
-                        {
+            stages
+            {
+            stage('Label Builds')
+            {
+                def gitTag=GIT_BRANCH.split('/').last()
+                addShortText background: 'white', borderColor: 'white', color: 'red', link: '', text: "${gitTag}"
+            }
 
             stage('Check the code quality')
             {
