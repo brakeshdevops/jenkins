@@ -53,7 +53,7 @@ folder('Mutable') {
     displayName('Mutable')
     description('Mutable')
 }
-pipelineJob('Mutable') {
+pipelineJob('Mutable/VPC') {
     configure { flowdefinition ->
         flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
             'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
