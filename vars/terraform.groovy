@@ -29,7 +29,7 @@ def call()
           steps
           {
             sh '''
-                terraform init -backend-config=env/${ENVIRONMENT}-backend.tfvars
+                cat rakesh
             '''
           }
         }
