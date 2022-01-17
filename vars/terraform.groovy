@@ -29,7 +29,7 @@ def call()
           steps
           {
             sh '''
-                cat Jenkinsfile
+                terraform init
             '''
           }
         }
