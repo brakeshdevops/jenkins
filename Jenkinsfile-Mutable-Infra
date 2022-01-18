@@ -18,7 +18,7 @@ pipeline
                 }
             }
         }
-         stage('Get Git Repo'){
+         stage('Terraform Apply'){
             steps{
                dir('code'){
                sh '''
