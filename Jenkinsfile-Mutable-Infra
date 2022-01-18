@@ -1,0 +1,33 @@
+pipeline
+{
+    agent{
+        label 'WORKSTATION'
+    }
+         options {
+            ansiColor('xterm')
+        }
+    parameters {
+         choice(name: 'ENVIRONMENT', choices: ['', 'dev', 'prod'], description:'Pick Environment')
+         string(name: 'COMPONENT', defaultValue:'', description: 'Which Component?')
+       }
+    stages{
+        stage('Get Git Repo'){
+            steps{
+                dir('code'){
+                git branch: 'main', url: "https://github.com/brakeshdevops/${COMPONENT}.git"
+                }
+            }
+        }
+         stage('Get Git Repo'){
+            steps{
+               dir('code'){
+               sh '''
+                    cd terraform-mutable
+                    terraform init -backend-config=env/${ENVIRONMENT}-backend.tfvars
+                    terraform ${ACTION} -auto-approve -var-file=env/${ENVIRONMENT}.tfvars
+               '''
+               }
+            }
+        }
+    }
+}
